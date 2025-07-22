@@ -59,7 +59,7 @@ Speed: 0.0ms preprocess, 22.3ms inference, 0.0ms loss, 0.0ms postprocess per ima
 
 A matriz de confusão ilustra em detalhes o desempenho do classificador. A versão normalizada abaixo mostra a porcentagem de acertos para cada classe.
 
-![Matriz de Confusão Normalizada](AV3/validation_results/vehicle_damage_val2/)
+![Matriz de Confusão Normalizada](AV3/validation_results/vehicle_damage_val2/confusion_matrix_normalized.png)
 
 **Análise da Matriz:**
 * **Classe `damage` (com dano):** O modelo identificou corretamente **100%** das imagens que continham veículos danificados.
