@@ -80,8 +80,10 @@ Abaixo, comparamos as previsões do modelo (`pred`) com os rótulos verdadeiros 
 **Lote de Validação 1:**
 *Rótulos Reais:*
 ![Rótulos Reais - Lote 1](AV3/validation_results/vehicle_damage_val2/val_batch1_labels.jpg)
+
 *Previsões do Modelo:*
 ![Previsões do Modelo - Lote 1](AV3/validation_results/vehicle_damage_val2/val_batch1_pred.jpg)
+
 
 Como observado nas imagens, o modelo realiza as classificações com altíssima confiança (próximo de 1.00), e os poucos erros não comprometem a eficácia geral da solução.
 
