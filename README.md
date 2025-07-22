@@ -74,6 +74,7 @@ Abaixo, comparamos as previsões do modelo (`pred`) com os rótulos verdadeiros 
 **Lote de Validação 0:**
 *Rótulos Reais:*
 ![Rótulos Reais - Lote 0](AV3/validation_results/vehicle_damage_val2/val_batch0_labels.jpg)
+
 *Previsões do Modelo:*
 ![Previsões do Modelo - Lote 0](AV3/validation_results/vehicle_damage_val2/val_batch0_pred.jpg)
 
