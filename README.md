@@ -29,7 +29,7 @@ Foi utilizado um conjunto de dados público do Kaggle, contendo milhares de imag
 
 ### 2.2. Modelo de Classificação
 
-O modelo escolhido foi o **YOLOv8**, da biblioteca Ultralytics. Para acelerar o desenvolvimento, foi adotada a técnica de **Transfer Learning**, utilizando pesos pré‑treinados no ImageNet. Em seguida, o modelo foi refinado para a tarefa específica, com treinamento por **10 épocas**.
+O modelo escolhido foi o **YOLOv11-cls**, da biblioteca Ultralytics.
 
 ### 2.3. Ambiente e Treinamento
 
