@@ -61,8 +61,7 @@ A matriz de confusão ilustra em detalhes o desempenho do classificador. A vers�
 ![Matriz de Confusão Normalizada](AV3/validation_results/vehicle_damage_val2/confusion_matrix_normalized.png)
 
 **Análise da Matriz:**
-* **Classe `damage` (com dano):** O modelo identificou corretamente **100%** das imagens que continham veículos danificados.
-* **Classe `no_damage` (sem dano):** O modelo identificou corretamente **94.7%** das imagens de veículos sem avarias. Houve uma pequena taxa de erro (5.3%) onde o modelo classificou um carro sem danos como se tivesse.
+
 
 Este resultado é muito positivo, pois demonstra que o sistema é extremamente confiável para sua finalidade principal: identificar veículos que de fato possuem danos.
 
