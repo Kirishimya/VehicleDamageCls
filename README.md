@@ -8,7 +8,7 @@
 
 ## **1. Introdução**
 
-A avaliação de danos em veículos é um processo fundamental em diversos setores – seguradoras, oficinas mecânicas, locadoras etc. Tradicionalmente, um inspetor faz essa análise manualmente, tornando-a lenta, subjetiva e custosa. Nosso objetivo foi automatizar essa tarefa com visão computacional, classificando imagens de veículos em **seis** tipos de avarias:
+A avaliação de danos em veículos é um processo fundamental em setores como seguradoras, oficinas mecânicas e locadoras. Tradicionalmente, essa análise é realizada manualmente, o que torna o processo lento, subjetivo e caro. O objetivo deste trabalho foi automatizar essa tarefa por meio de visão computacional, classificando imagens de veículos em **seis tipos de avarias**:
 
 - **crack** (rachadura)  
 - **dent** (amassado)  
@@ -17,7 +17,7 @@ A avaliação de danos em veículos é um processo fundamental em diversos setor
 - **scratch** (arranhão)  
 - **tire flat** (pneu furado)  
 
-Usamos um modelo da família YOLO (You Only Look Once) pré‑treinado e afinado para reconhecer esses padrões.
+Foi utilizado um modelo da família YOLO (You Only Look Once), pré‑treinado e ajustado para reconhecer esses padrões de danos.
 
 ---
 
@@ -25,20 +25,18 @@ Usamos um modelo da família YOLO (You Only Look Once) pré‑treinado e afinado
 
 ### 2.1. Dataset
 
-- Conjunto público do Kaggle com milhares de imagens rotuladas nas 6 classes.  
-- Divisão por `split-folders`: **80%** treinamento | **20%** validação.
+Foi utilizado um conjunto de dados público do Kaggle, contendo milhares de imagens rotuladas nas 6 classes mencionadas. A divisão foi feita com a biblioteca `split-folders`, resultando em **80% para treinamento** e **20% para validação**.
 
 ### 2.2. Modelo de Classificação
 
-- **Ultralytics YOLOv8**  
-- **Transfer Learning** a partir de pesos pré‑treinados no ImageNet.  
-- Fine‑tuning por **10 épocas**, equilíbrio entre aprendizagem e generalização.
+O modelo escolhido foi o **YOLOv8**, da biblioteca Ultralytics. Para acelerar o desenvolvimento, foi adotada a técnica de **Transfer Learning**, utilizando pesos pré‑treinados no ImageNet. Em seguida, o modelo foi refinado para a tarefa específica, com treinamento por **10 épocas**.
 
 ### 2.3. Ambiente e Treinamento
 
-- **Google Colab** (GPU)  
-- **Python 3**, **PyTorch**, **Ultralytics YOLO**  
-- Notebook: `CVAv3.ipynb`
+- **Ambiente:** Google Colab (com GPU)  
+- **Linguagem:** Python 3  
+- **Frameworks:** PyTorch, Ultralytics YOLO  
+- **Notebook:** `CVAv3.ipynb`
 
 ---
 
@@ -46,20 +44,16 @@ Usamos um modelo da família YOLO (You Only Look Once) pré‑treinado e afinado
 
 ### 3.1. Métricas de Desempenho
 
-- **Acurácia (validação): 97,5%**
+O modelo alcançou uma **acurácia de 97,5%** no conjunto de validação:
 
 all 0.975 1
 Speed: 0.0ms preprocess, 22.3ms inference, 0.0ms loss, 0.0ms postprocess per image
-
-ruby
-Copy
-Edit
 
 ### 3.2. Matriz de Confusão
 
 ![Matriz de Confusão Normalizada](AV3/validation_results/vehicle_damage_val2/confusion_matrix_normalized.png)
 
-**Análise (normalizada por linha):**
+**Análise da matriz:**
 
 | Classe real       | Crack | Dent | GS    | LB    | Scratch | TF    |
 |-------------------|:-----:|:----:|:-----:|:-----:|:-------:|:-----:|
@@ -70,37 +64,40 @@ Edit
 | **scratch**       | 0.02  | 0.01 | 0.02  |  —    |  0.97   | 0.02  |
 | **tire flat**     | 0.01  |  —   |  —    |  —    |   —     | 0.98  |
 
-- **Melhor desempenho:** _crack_ e _glass shatter_.  
-- **Confusões chave:** _dent_ ↔ _scratch_; _lamp broken_ confundido com _dent_; _scratch_ às vezes como _tire flat_.
+O modelo apresentou excelente desempenho, especialmente em _crack_ e _glass shatter_. Os poucos erros ocorreram em casos limítrofes, como amassados leves confundidos com arranhões ou faróis levemente trincados classificados incorretamente.
 
 ### 3.3. Análise Qualitativa
 
-Comparação entre rótulos verdadeiros (branco) e previsões (cores):
+Abaixo estão comparações visuais entre as **previsões do modelo** e os **rótulos reais**:
 
-#### Lote 0
+#### Lote de Validação 0
 
 | Rótulos Reais                         | Previsões do Modelo                        |
 |---------------------------------------|--------------------------------------------|
 | ![Labels0](AV3/validation_results/vehicle_damage_val2/val_batch0_labels.jpg) | ![Pred0](AV3/validation_results/vehicle_damage_val2/val_batch0_pred.jpg) |
 
-- **Acertos:** trincas e vidros quebrados sempre corretos.  
-- **Erros:** amassado leve classificado como _glass shatter_; leve dano no farol como _lamp broken_.
+- **Acertos notáveis:** danos evidentes como _glass shatter_, _scratch_ e _tire flat_ foram classificados corretamente.  
+- **Erros observados:** um pequeno amassado foi rotulado como _glass shatter_; uma rachadura leve em farol foi entendida como _lamp broken_.
 
-#### Lote 1
+#### Lote de Validação 1
 
 | Rótulos Reais                         | Previsões do Modelo                        |
 |---------------------------------------|--------------------------------------------|
 | ![Labels1](AV3/validation_results/vehicle_damage_val2/val_batch1_labels.jpg) | ![Pred1](AV3/validation_results/vehicle_damage_val2/val_batch1_pred.jpg) |
 
-- **Acertos:** pneus furados e arranhões profundos.  
-- **Erros:** impacto leve no farol marcado como _glass shatter_; amassado complexo com confiança menor (0.85).
+- **Acertos:** danos mais nítidos e bem definidos, como arranhões profundos ou pneus murchos.  
+- **Erros:** um farol rachado foi confundido com _glass shatter_; uma área deformada com reflexo foi classificada com menor confiança.
 
 ---
 
 ## **4. Conclusão**
 
-- YOLOv8 atingiu **97,5%** de acurácia em 6 classes de dano automotivo.  
-- **Futuros trabalhos:**  
-  1. Detecção com bounding‑boxes.  
-  2. Classificação de severidade (leve/médio/grave).  
-  3. Deploy em app web/móvel.
+Este projeto demonstrou que a aplicação de modelos YOLOv8 em visão computacional pode automatizar de forma confiável a classificação de danos veiculares. A acurácia de **97,5%** comprova o potencial da abordagem.
+
+### Possíveis Extensões:
+
+1. **Detecção com bounding boxes:** localizar o dano na imagem, além de classificá-lo.  
+2. **Classificação de severidade:** por exemplo, dano leve, moderado ou grave.  
+3. **Deploy:** integrar o modelo a um sistema web ou app móvel para uso prático por seguradoras ou oficinas.
+
+---
