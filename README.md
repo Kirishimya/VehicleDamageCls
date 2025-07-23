@@ -11,7 +11,7 @@
 
 A avaliação de danos em veículos é um processo fundamental em diversos setores, como seguradoras, oficinas mecânicas e empresas de aluguel de carros. Tradicionalmente, essa tarefa é realizada manualmente por inspetores, o que pode ser um processo lento, subjetivo e caro. A automação dessa análise através da inteligência artificial pode trazer mais agilidade, objetividade e eficiência para o fluxo de trabalho.
 
-O objetivo deste projeto foi desenvolver e avaliar um sistema de visão computacional capaz de classificar imagens de veículos em duas categorias principais: **com danos** (`damage`) ou **sem danos** (`no_damage`). Para isso, utilizamos um modelo de aprendizado profundo (Deep Learning) da família YOLO, que foi treinado para reconhecer padrões visuais característicos de avarias em automóveis.
+O objetivo deste projeto foi desenvolver e avaliar um sistema de visão computacional capaz de classificar imagens de veículos em duas categorias principais: . Para isso, utilizamos um modelo de aprendizado profundo (Deep Learning) da família YOLO, que foi treinado para reconhecer padrões visuais característicos de avarias em automóveis.
 
 ---
 
@@ -21,11 +21,10 @@ O projeto foi desenvolvido inteiramente no ambiente Google Colab, aproveitando s
 
 #### **2.1. Dataset**
 
-Utilizamos um dataset público de imagens de veículos, obtido da plataforma Kaggle. O conjunto de dados continha milhares de imagens, previamente rotuladas em duas classes: `damage` (veículo com algum tipo de avaria visível) e `no_damage` (veículo intacto).
+Utilizamos um dataset público de imagens de veículos, obtido da plataforma Kaggle. O conjunto de dados continha milhares de imagens, previamente rotuladas em 6 classes:.
 
 Para organizar os dados para o treinamento, utilizamos a biblioteca `split-folders` do Python, que dividiu o dataset automaticamente na seguinte proporção:
-* **80% para Treinamento:** Imagens usadas para ensinar o modelo.
-* **20% para Validação:** Imagens usadas para ajustar e avaliar o modelo durante o treinamento.
+
 
 #### **2.2. Modelo de Classificação**
 
