@@ -2,8 +2,8 @@
 
 **Projeto: Sistema de Classificação de Danos em Veículos Utilizando YOLO**
 
-**Autor(es):** (Seu Nome/Nomes Aqui)
-**Repositório do Projeto:** [Link para o Google Colab ou GitHub](https://github.com/Kirishimya/VehicleDamageCls)
+**Autor(es):** Gabriel Rossine Paulino de Souza
+**Repositório do Projeto:** [Link para o GitHub](https://github.com/Kirishimya/VehicleDamageCls)
 
 ---
 
